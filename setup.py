@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="density",
-    version="0.0.1",
+    version="0.0.2",
     description="Serializable density functions",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -20,8 +20,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.12",
     ],
-    packages=["density","density.z",
-              "density.skaters",
+    packages=["density",
               ],
     test_suite='pytest',
     tests_require=['pytest'],
