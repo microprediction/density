@@ -9,4 +9,4 @@ A simple specification of univariate density functions
 
 Specify a normal distribution [simplescipyexample](https://github.com/microprediction/density/blob/main/examples/simplescipyexample.py)
 
-
+See the [Scipy manifest](https://github.com/microprediction/density/blob/main/density/schemachecker/scipydensitymanifest.py) for a list of densities. 
