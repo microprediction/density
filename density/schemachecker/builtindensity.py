@@ -2,11 +2,7 @@
 from typing import Dict, Literal
 from pydantic import Field, model_validator
 from density.schemachecker.densitybase import DensityBase
-
-ALLOWED_BUILTIN_DISTS = {
-    # We only allow "normal"
-    "normal": {"mu", "sigma"}  # For statistics.NormalDist
-}
+from density.schemachecker.builtindensitymanifest import BUILTIN_DENSITY_LISTING
 
 
 class BuiltinDensity(DensityBase):
@@ -27,12 +23,12 @@ class BuiltinDensity(DensityBase):
 
     @model_validator(mode="after")
     def check_builtin_name_and_params(self):
-        if self.name not in ALLOWED_BUILTIN_DISTS:
+        if self.name not in BUILTIN_DENSITY_LISTING:
             raise ValueError(
                 f"Unknown builtin distribution '{self.name}'. "
-                f"Allowed: {list(ALLOWED_BUILTIN_DISTS.keys())}"
+                f"Allowed: {list(BUILTIN_DENSITY_LISTING.keys())}"
             )
-        allowed_params = ALLOWED_BUILTIN_DISTS[self.name]
+        allowed_params = BUILTIN_DENSITY_LISTING[self.name]
         for k in self.params:
             if k not in allowed_params:
                 raise ValueError(

@@ -1,24 +1,7 @@
 from typing import Dict, Literal
 from pydantic import Field, model_validator
 from .densitybase import DensityBase
-
-VALID_SCIPY_DENSITIES = {
-    "norm":         {"loc", "scale"},
-    "expon":        {"loc", "scale"},
-    "t":            {"df", "loc", "scale"},
-    "weibull_min":  {"c", "loc", "scale"},
-    "gamma":        {"a", "loc", "scale"},
-    "weibull_max": {"c", "loc", "scale"},
-    "beta": {"a", "b", "loc", "scale"},
-    "lognorm": {"s", "loc", "scale"},
-    "chi": {"df", "loc", "scale"},
-    "chi2": {"df", "loc", "scale"},
-    "rayleigh": {"loc", "scale"},
-    "pareto": {"b", "loc", "scale"},
-    "cauchy": {"loc", "scale"},
-    "laplace": {"loc", "scale"},
-    "f": {"dfn", "dfd", "loc", "scale"},
-}
+from density.schemachecker.scipydensitymanifest import SCIPY_DENSITY_MANIFEST
 
 
 class ScipyDensity(DensityBase):
@@ -40,11 +23,11 @@ class ScipyDensity(DensityBase):
         Called after Pydantic has constructed 'self' (i.e., the model instance).
         We can now check that self.name is in the known dictionary, etc.
         """
-        if self.name not in VALID_SCIPY_DENSITIES:
+        if self.name not in SCIPY_DENSITY_MANIFEST:
             raise ValueError(
-                f"Unknown scipy density '{self.name}'. Allowed: {list(VALID_SCIPY_DENSITIES.keys())}"
+                f"Unknown scipy density '{self.name}'. Allowed: {list(SCIPY_DENSITY_MANIFEST.keys())}"
             )
-        allowed_keys = VALID_SCIPY_DENSITIES[self.name]
+        allowed_keys = SCIPY_DENSITY_MANIFEST[self.name]
         for param_key in self.params.keys():
             if param_key not in allowed_keys:
                 raise ValueError(

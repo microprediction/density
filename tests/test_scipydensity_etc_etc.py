@@ -3,7 +3,7 @@ import math
 import scipy.stats as st
 from pydantic import ValidationError
 
-from density.schemachecker.scipydensity import ScipyDensity, VALID_SCIPY_DENSITIES
+from density.schemachecker.scipydensity import ScipyDensity, SCIPY_DENSITY_MANIFEST
 
 
 def test_valid_scipy_norm():
@@ -40,7 +40,7 @@ def test_valid_scipy_expon():
 def test_valid_scipy_more_distributions(name, params):
     """
     Check that a variety of extended distributions
-    are accepted by ScipyDensity if we have them in VALID_SCIPY_DENSITIES.
+    are accepted by ScipyDensity if we have them in SCIPY_DENSITY_MANIFEST.
     """
     sd = ScipyDensity(type="scipy", name=name, params=params)
     assert sd.name == name

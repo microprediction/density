@@ -19,7 +19,7 @@ def test_valid_builtin_normal(name, params):
     assert bd.params == params
 
 def test_unknown_builtin_distribution():
-    """Ensure an error is raised if 'name' isn't in ALLOWED_BUILTIN_DISTS."""
+    """Ensure an error is raised if 'name' isn't in BUILTIN_DENSITY_LISTING."""
     with pytest.raises(ValueError, match="Unknown builtin distribution 'foobar'"):
         BuiltinDensity(type="builtin", name="foobar", params={"mu": 0, "sigma": 1})
 

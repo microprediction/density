@@ -5,7 +5,7 @@ import math
 import scipy.stats as st
 from pydantic import ValidationError
 
-from density.schemachecker.scipydensity import ScipyDensity, VALID_SCIPY_DENSITIES
+from density.schemachecker.scipydensity import ScipyDensity, SCIPY_DENSITY_MANIFEST
 
 
 def test_valid_scipy_norm():
