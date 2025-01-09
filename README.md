@@ -6,7 +6,8 @@ A simple specification of univariate density functions
    pip install density 
    
 ## Examples
+See [exammples](https://github.com/microprediction/density/tree/main/examples) of specifying densities. 
 
-Specify a normal distribution [simplescipyexample](https://github.com/microprediction/density/blob/main/examples/simplescipyexample.py)
+To evaluate PDFs, eithr see the manual examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation) or use the `densitypdf` package. 
 
 
