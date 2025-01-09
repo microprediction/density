@@ -1,5 +1,5 @@
 # Density ![tests_312](https://github.com/microprediction/density/workflows/tests_312/badge.svg)
-A simple `dict` specification of continuous univariate density functions, with `pydantic`. 
+A simple `dict` specification of an algebra of continuous univariate density function mixtures using `pydantic`. 
 
 ## Install
 
@@ -41,6 +41,6 @@ The current use case involves evaluation of a single data point at a time. For t
       val = density_pdf(mixture_spec, x=0.0)
 
 
-You can also evaluate manually, per [here](https://github.com/microprediction/density/tree/main/examples/evaluation) 
+You can also evaluate manually of course, per examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation). 
 
 
