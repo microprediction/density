@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="density",
-    version="0.0.3",
+    version="1.0.0",
     description="Specifications of parametric density functions",
     long_description=README,
     long_description_content_type="text/markdown",
