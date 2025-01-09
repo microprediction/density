@@ -5,9 +5,12 @@ A simple specification of univariate density functions
 
    pip install density 
    
-## Examples
-See [exammples](https://github.com/microprediction/density/tree/main/examples) of specifying densities. 
-
-To evaluate PDFs, eithr see the manual examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation) or use the `densitypdf` package. 
+## Specifying densities or mixtures of the same
+See [examples](https://github.com/microprediction/density/tree/main/examples) of specifying densities. 
 
 See the [Scipy manifest](https://github.com/microprediction/density/blob/main/density/schemachecker/scipydensitymanifest.py) for a list of densities. 
+
+## Evaluating densities 
+Not provided here. To evaluate PDFs, either see the manual examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation) or use the `densitypdf` package. 
+
+
