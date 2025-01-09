@@ -7,8 +7,8 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="density",
-    version="0.0.2",
-    description="Serializable density functions",
+    version="0.0.1",
+    description="Specifications of parametric density functions",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/microprediction/density",
@@ -23,9 +23,9 @@ setup(
     packages=["density",
               ],
     test_suite='pytest',
-    tests_require=['pytest'],
+    tests_require=['pytest','scipy'],
     include_package_data=True,
-    install_requires=['numpy'],
+    install_requires=['pydantic'],
     entry_points={
         "console_scripts": [
             "density=density.__main__:main",
