@@ -13,7 +13,7 @@ See the [Scipy manifest](https://github.com/microprediction/density/blob/main/de
 
 
 ## Evaluating densities 
-The current use case involves evaluation of a single data point at a time. For this we recommend using the `builtin` option rather than `scipy`, and using [https://github.com/microprediction/density](https://github.com/microprediction/densitypdf) package. 
+The current use case involves evaluation of a single data point at a time. For this we recommend using the `builtin` option rather than `scipy`, and using [https://github.com/microprediction/densitypdf](https://github.com/microprediction/densitypdf) package. 
 
 
       from densitypdf import density_pdf
