@@ -2,13 +2,13 @@
 from typing import Dict, Literal
 from pydantic import Field, model_validator
 from density.schemachecker.densitybase import DensityBase
-from density.schemachecker.builtindensitymanifest import BUILTIN_DENSITY_LISTING
+from density.schemachecker.builtindensitymanifest import BUILTIN_DENSITY_MANIFEST
 
 
 class BuiltinDensity(DensityBase):
     """
     A single distribution specification for a "builtin" or "pure Python" distribution.
-    Currently we only allow 'name="normal"' referencing `statistics.NormalDist`.
+
 
     Example:
       {
@@ -23,12 +23,12 @@ class BuiltinDensity(DensityBase):
 
     @model_validator(mode="after")
     def check_builtin_name_and_params(self):
-        if self.name not in BUILTIN_DENSITY_LISTING:
+        if self.name not in BUILTIN_DENSITY_MANIFEST:
             raise ValueError(
                 f"Unknown builtin distribution '{self.name}'. "
-                f"Allowed: {list(BUILTIN_DENSITY_LISTING.keys())}"
+                f"Allowed: {list(BUILTIN_DENSITY_MANIFEST.keys())}"
             )
-        allowed_params = BUILTIN_DENSITY_LISTING[self.name]
+        allowed_params = [self.name]
         for k in self.params:
             if k not in allowed_params:
                 raise ValueError(

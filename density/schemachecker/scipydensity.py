@@ -1,6 +1,6 @@
 from typing import Dict, Literal
 from pydantic import Field, model_validator
-from .densitybase import DensityBase
+from density.schemachecker.densitybase import DensityBase
 from density.schemachecker.scipydensitymanifest import SCIPY_DENSITY_MANIFEST
 
 

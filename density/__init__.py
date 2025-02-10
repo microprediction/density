@@ -1,1 +1,3 @@
 from density.validatedensitydict import validate_density_dict
+
+validate_density = validate_density_dict

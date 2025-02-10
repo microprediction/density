@@ -7,13 +7,14 @@ from pydantic import BaseModel, Field, field_validator
 if TYPE_CHECKING:
     from density.schemachecker.scipydensity import ScipyDensity
     from density.schemachecker.builtindensity import BuiltinDensity
+    from density.schemachecker.statisticsdensity import StatisticsDensity
 
 
 #   We'll define a "MixtureComponent" referencing a union of ANY density, including MixtureSpec itself.
 #   Because we want recursion, we can do a forward reference.
 
 class MixtureComponent(BaseModel):
-    density: Annotated[Union["ScipyDensity", "BuiltinDensity", "MixtureSpec"], Field(discriminator="type")]
+    density: Annotated[Union["ScipyDensity", "StatisticsDensity", "BuiltinDensity","MixtureSpec"], Field(discriminator="type")]
     weight: float
 
 

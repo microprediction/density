@@ -11,3 +11,4 @@ See [exammples](https://github.com/microprediction/density/tree/main/examples) o
 To evaluate PDFs, eithr see the manual examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation) or use the `densitypdf` package. 
 
 See the [Scipy manifest](https://github.com/microprediction/density/blob/main/density/schemachecker/scipydensitymanifest.py) for a list of densities. 
+

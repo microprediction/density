@@ -12,14 +12,14 @@ from density.schemachecker.builtindensity import BuiltinDensity
     ("normal", {"mu": -1.2, "sigma": 2.5}),
 ])
 def test_valid_builtin_normal(name, params):
-    """Test that BuiltinDensity accepts valid 'normal' with mu, sigma."""
+    """Test that StatisticsDensity accepts valid 'normal' with mu, sigma."""
     bd = BuiltinDensity(type="builtin", name=name, params=params)
     assert bd.type == "builtin"
     assert bd.name == "normal"
     assert bd.params == params
 
 def test_unknown_builtin_distribution():
-    """Ensure an error is raised if 'name' isn't in BUILTIN_DENSITY_LISTING."""
+    """Ensure an error is raised if 'name' isn't in STATISTICS_DENSITY_LISTING."""
     with pytest.raises(ValueError, match="Unknown builtin distribution 'foobar'"):
         BuiltinDensity(type="builtin", name="foobar", params={"mu": 0, "sigma": 1})
 
@@ -40,7 +40,7 @@ def test_missing_sigma():
 def test_statistics_normaldist_evaluation():
     """
     Example test showing how you might evaluate a PDF using Python's built-in
-    statistics.NormalDist after validating BuiltinDensity.
+    statistics.NormalDist after validating StatisticsDensity.
     """
     bd = BuiltinDensity(type="builtin", name="normal", params={"mu": 0, "sigma": 1})
     mu = bd.params["mu"]

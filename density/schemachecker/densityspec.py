@@ -1,13 +1,12 @@
-from typing import Union, Annotated
-from pydantic import Field, BaseModel
 from density.schemachecker.scipydensity import ScipyDensity
 from density.schemachecker.builtindensity import BuiltinDensity
+from density.schemachecker.statisticsdensity import StatisticsDensity
 from density.schemachecker.mixturespec import MixtureSpec
 from typing import Union, Annotated
 from pydantic import Field, RootModel
 
 # A union of the three models, discriminated by `type`.
-AnyDensityUnion = Union[ScipyDensity, BuiltinDensity, MixtureSpec]
+AnyDensityUnion = Union[ScipyDensity, BuiltinDensity, StatisticsDensity, MixtureSpec]
 DiscriminatedAnyDensity = Annotated[AnyDensityUnion, Field(discriminator="type")]
 
 

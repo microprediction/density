@@ -8,6 +8,7 @@ from density.schemachecker.mixturespec import MixtureSpec
 from density.schemachecker.scipydensity import ScipyDensity
 from density.schemachecker.builtindensity import BuiltinDensity
 
+
 def test_valid_mixture_scipy_builtin():
     """A valid mixture of one scipy distribution and one builtin distribution."""
     mixture_data = {
@@ -38,6 +39,7 @@ def test_valid_mixture_scipy_builtin():
     total_weight = sum(comp.weight for comp in mixture.components)
     assert abs(total_weight - 1.0) < 1e-9
 
+
 def test_invalid_sum_of_weights():
     """Ensure an error is raised if mixture weights don't sum to 1."""
     bad_mixture_data = {
@@ -63,6 +65,7 @@ def test_invalid_sum_of_weights():
     }
     with pytest.raises(ValidationError, match="Mixture weights must sum to 1.0"):
         MixtureSpec(**bad_mixture_data)
+
 
 def test_mixture_with_unknown_distribution():
     """If a component references an unknown distribution, it should fail."""
@@ -90,6 +93,7 @@ def test_mixture_with_unknown_distribution():
     # Expecting an error about "Unknown builtin distribution 'foobar'"
     with pytest.raises(ValidationError, match="Unknown builtin distribution 'foobar'"):
         MixtureSpec(**bad_mixture_data)
+
 
 def test_nested_mixture_ok():
     """Example of a nested mixture, if your schema allows it."""
@@ -136,6 +140,7 @@ def test_nested_mixture_ok():
     nested_mix = mixture.components[0].density
     assert nested_mix.type == "mixture"
     assert len(nested_mix.components) == 2
+
 
 def test_nested_mixture_invalid_sum():
     """Nested mixture where the nested mixture's weights don't sum to 1 -> error."""
