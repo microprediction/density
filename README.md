@@ -10,7 +10,7 @@ See [examples](https://github.com/microprediction/density/tree/main/examples) of
 
 See the [Scipy manifest](https://github.com/microprediction/density/blob/main/density/schemachecker/scipydensitymanifest.py) for a list of densities. 
 
-<<<<<<< HEAD
+
 =======
 ## Evaluating densities 
 The current use case involves evaluation of a single data point at a time. For this we recommend using the `builtin` option rather than `scipy`, and using [https://github.com/microprediction/density](https://github.com/microprediction/densitypdf) package. 
@@ -44,6 +44,3 @@ The current use case involves evaluation of a single data point at a time. For t
 
 
 You can also evaluate manually of course, per examples [here](https://github.com/microprediction/density/tree/main/examples/evaluation). 
-
-
->>>>>>> d86f067e43510214131058666870156317909de9
