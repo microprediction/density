@@ -74,3 +74,7 @@ def test_integration_scipy_pdf_expon():
     # Exponential PDF at x=0, with scale=2 => 1/2
     pdf_val = dist.pdf(0.0)
     assert math.isclose(pdf_val, 0.5, rel_tol=1e-7)
+
+
+if __name__=='__main__':
+    pytest.main([__file__])

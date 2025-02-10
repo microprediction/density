@@ -13,8 +13,8 @@ class BuiltinDensity(DensityBase):
     Example:
       {
         "type": "builtin",
-        "name": "normal",
-        "params": { "mu": 0.0, "sigma": 1.0 }
+        "name": "norm",
+        "params": { "loc": 0.0, "scale": 1.0 }
       }
     """
     type: Literal["builtin"] = Field(default="builtin")
@@ -28,11 +28,19 @@ class BuiltinDensity(DensityBase):
                 f"Unknown builtin distribution '{self.name}'. "
                 f"Allowed: {list(BUILTIN_DENSITY_MANIFEST.keys())}"
             )
-        allowed_params = [self.name]
-        for k in self.params:
-            if k not in allowed_params:
+        allowed_params = BUILTIN_DENSITY_MANIFEST[self.name]
+        for param_key in self.params:
+            if param_key not in allowed_params:
                 raise ValueError(
-                    f"Invalid parameter '{k}' for builtin distribution '{self.name}'. "
+                    f"Invalid parameter '{param_key}' for builtin distribution '{self.name}'. "
                     f"Allowed params: {allowed_params}"
                 )
+
+        # Check for missing required parameters
+        missing_params = allowed_params - self.params.keys()
+        if missing_params:
+            raise ValueError(
+                f"Missing required parameter(s) {missing_params} for builtin distribution '{self.name}'"
+            )
+
         return self

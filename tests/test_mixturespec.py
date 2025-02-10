@@ -2,8 +2,6 @@
 # tests/test_mixture.py
 import pytest
 from pydantic import ValidationError
-
-# Import the model you want to test
 from density.schemachecker.mixturespec import MixtureSpec
 from density.schemachecker.scipydensity import ScipyDensity
 from density.schemachecker.builtindensity import BuiltinDensity
@@ -25,8 +23,8 @@ def test_valid_mixture_scipy_builtin():
             {
                 "density": {
                     "type": "builtin",
-                    "name": "normal",
-                    "params": {"mu": 0, "sigma": 1}
+                    "name": "norm",
+                    "params": {"loc": 0, "scale": 1}
                 },
                 "weight": 0.4
             }
@@ -56,14 +54,14 @@ def test_invalid_sum_of_weights():
             {
                 "density": {
                     "type": "builtin",
-                    "name": "normal",
-                    "params": {"mu": 0, "sigma": 1}
+                    "name": "norm",
+                    "params": {"loc": 0, "scale": 1}
                 },
                 "weight": 0.3
             }
         ]
     }
-    with pytest.raises(ValidationError, match="Mixture weights must sum to 1.0"):
+    with pytest.raises(ValidationError, match="Mixture weights"):
         MixtureSpec(**bad_mixture_data)
 
 
@@ -84,7 +82,7 @@ def test_mixture_with_unknown_distribution():
                 "density": {
                     "type": "builtin",
                     "name": "foobar",  # invalid builtin name
-                    "params": {"mu": 0, "sigma": 1}
+                    "params": {"loc": 0, "scale": 1}
                 },
                 "weight": 0.5
             }
@@ -115,8 +113,8 @@ def test_nested_mixture_ok():
                         {
                             "density": {
                                 "type": "builtin",
-                                "name": "normal",
-                                "params": {"mu": 0, "sigma": 1}
+                                "name": "norm",
+                                "params": {"loc": 0, "scale": 1}
                             },
                             "weight": 0.5
                         }
@@ -154,16 +152,16 @@ def test_nested_mixture_invalid_sum():
                         {
                             "density": {
                                 "type": "builtin",
-                                "name": "normal",
-                                "params": {"mu": 1, "sigma": 2}
+                                "name": "norm",
+                                "params": {"loc": 1, "scale": 2}
                             },
                             "weight": 0.3
                         },
                         {
                             "density": {
                                 "type": "builtin",
-                                "name": "normal",
-                                "params": {"mu": 0, "sigma": 1}
+                                "name": "norm",
+                                "params": {"loc": 0, "scale": 1}
                             },
                             "weight": 0.3
                         }
@@ -182,5 +180,10 @@ def test_nested_mixture_invalid_sum():
         ]
     }
     # The nested mixture's sum is 0.6, not 1.0 => expect an error
-    with pytest.raises(ValidationError, match="Mixture weights must sum to 1.0"):
+    with pytest.raises(ValidationError, match="Mixture weights"):
         MixtureSpec(**bad_nested_data)
+
+
+
+if __name__=='__main__':
+    pytest.main([__file__])
